@@ -1,0 +1,28 @@
+function [ Iout ] = CCFinder( I )
+
+Iout = zeros(size(I));
+[r,c] = size(I);
+for i = 1:r
+    for j = 1:c
+        if(I(i,j) == 0) %0 pixels are not part of the CC
+            continue;
+        end
+        
+        min = Inf;
+        if(i > 1 && Iout(i-1,j) > 0 && Iout(i-1,j) < min)
+            min = Iout(i-1,j);
+        end
+        
+        if(j < c && Iout(i,j+1) > 0 && Iout(i, j+1) < min)
+            min = Iout(i,j+1);
+        end
+        
+        if(i < r && Iout(i+1,j) > 0 && Iout(i+1, j) < min)
+            min = Iout(i+1,j);
+        end
+        
+        if(j > 1 && Iout(i,j-1) > 0 && Iout(i, j-1) < min)
+            min = Iout(i,j1);
+        end
+end
+
